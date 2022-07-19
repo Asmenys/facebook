@@ -1,20 +1,28 @@
-<div class=" p-3 grid bg-gray-400">
+<div class=" p-3 grid border-solid border-black border-2">
   
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="grid gap-5">
       <div class="field">
-        <%= f.email_field :email, placeholder: "Email", autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, placeholder: "Email", autocomplete: "email", class: "rounded" %>
       </div>
 
       <div class="field">
-        <%= f.password_field :password, placeholder: "Password" %>
+        <%= f.password_field :password, placeholder: "Password", class: "rounded" %>
       </div>
     </div>
 
-    <div class="actions">
-      <%= f.submit "Log in" %>
+    <div class="grid mb-5 items-center border-solid border-b pb-2 border-black ">
+      <div class="actions grid bg-sky-600 mt-5 justify-stretch rounded text-white hover:bg-sky-700">
+        <%= f.submit "Log in", class: "font-bold" %>
+      </div>
+      <div class = "justify-self-center grid items-center text-sky-600 text-sm hover:underline">
+        <%= render 'devise/shared/password_reset_link'%>
+      </div>
     </div>
   <% end %>
-  
-  <%= render "devise/shared/links" %>
+
+
+  <div class="grid bg-green-600 rounded justify-stretch text-white font-bold hover:bg-green-700">
+    <%= render 'devise/shared/registerable_link'%>
+  </div>  
 </div>
