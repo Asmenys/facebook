@@ -7,9 +7,7 @@ group :development do
   gem "guard", "~> 2.18"
   gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'guard-rails_best_practices'
   gem 'guard-minitest'
-  gem 'rails_best_practices'
 end
 
 group :test do
