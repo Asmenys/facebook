@@ -5,8 +5,16 @@ ruby "3.0.1"
 
 group :development do
   gem "guard", "~> 2.18"
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'guard-rails_best_practices'
+  gem 'guard-minitest'
+  gem 'rails_best_practices'
 end
 
+group :test do
+   gem 'ruby-prof'
+end
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
