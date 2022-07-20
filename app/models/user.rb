@@ -10,4 +10,13 @@ class User < ApplicationRecord
 
   has_many :sent_friend_requests, class_name: "FriendRequest", inverse_of: "request_sender", foreign_key: "request_sender_id"
   has_many :received_friend_requests, class_name: "FriendRequest", inverse_of: "request_receiver", foreign_key: "request_receiver_id"
+
+  def friends
+    friend_user_array = []
+    friendship_list = Friendship.friendships_for_user(self.id)
+    friend_user_array += friendship_list.select(:friendship_master_id).where.not(friendship_master: self).map(&:friendship_master)
+    friend_user_array += friendship_list.select(:friendship_receiver_id).where.not(friendship_receiver: self).map(&:friendship_receiver)
+    friend_user_array
+  end
+    
 end
