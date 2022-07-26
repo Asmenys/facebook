@@ -1,0 +1,10 @@
+<div class="grid bg-white, border-solid border-black border-2">
+    <div>
+        <%= post.creator.email%>
+    
+    
+    
+        <%="#{post.created_at.day.ordinalize} #{post.created_at.strftime("%B")} at #{post.created_at.strftime("%H:%M")}"%> 
+    </div>
+    <div><%= post.body %> </div>
+</div>
