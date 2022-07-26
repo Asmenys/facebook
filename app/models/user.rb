@@ -18,5 +18,4 @@ class User < ApplicationRecord
     friend_user_array += friendship_list.select(:friendship_receiver_id).where.not(friendship_receiver: self).map(&:friendship_receiver)
     friend_user_array
   end
-    
 end
