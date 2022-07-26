@@ -1,10 +1,12 @@
 <div class="grid bg-white, border-solid border-black border-2">
-    <div>
-        <%= post.creator.email%>
-    
-    
-    
-        <%="#{post.created_at.day.ordinalize} #{post.created_at.strftime("%B")} at #{post.created_at.strftime("%H:%M")}"%> 
+    <div class="grid grid-rows-1 gap-5">
+        <div class = "grid row-start-1">
+            <%="#{post.creator.firstName} #{post.creator.lastName}"%>
+        </div>
+
+        <div class = "grid row-start-1">
+             <li class="list-disc"><%="#{post.created_at.day.ordinalize} #{post.created_at.strftime("%B")} at #{post.created_at.strftime("%H:%M")}"%></li>
+        </div>
     </div>
     <div><%= post.body %> </div>
 </div>
