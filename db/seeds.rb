@@ -7,3 +7,4 @@
 #   Character.create(name: "Luke", movie: movies.first)
 User.create(password:"1234567", email: "user_one@gmail.com", lastName:"Anders", firstName:"Thom")
 User.create(password:"1234567", email: "user_two@gmail.com", lastName: "Siom", firstName: "Dora")
+Post.create(creator: User.first, body: "sample post lorem ipsum many words")
