@@ -1,7 +1,7 @@
 <% if @posts.any?%>
     <div class="bg-white mx-auto">
         <%@posts.each do |post|%>
-            <%= render post, post: post %>
+            <%= render @posts %>
         <%end%>
     </div>
 <%end%>
