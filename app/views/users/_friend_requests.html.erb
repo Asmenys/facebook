@@ -1,0 +1,8 @@
+<% if @user == current_user%>
+    <div>
+        Friend Requests
+        <%if @user.received_friend_requests.count > 0%>
+            <%= @user.received_friend_requests.count%>
+        <% end %>
+    </div>
+<% end %>
