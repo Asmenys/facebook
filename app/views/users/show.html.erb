@@ -23,7 +23,7 @@
             <%= render 'friend_requests'%>
         </div>
     </div>
-    <div class="mt-5 grid gap-1">
-        <%= render 'user_posts'%>
-    </div>
+    <turbo-frame id="posts">
+    <%= render @user.posts%>
+    </turbo-frame>
 </div>
