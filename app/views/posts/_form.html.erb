@@ -1,0 +1,8 @@
+<div class="mx-auto bg-white shadow-xl p-2 grid">
+    <%= form_with model: @post do |form|%>
+    <%= form.label :body, "Body:", :class => ""%>
+    <%= form.text_field :body, :class => ""%>
+    <%= form.submit "Create post"%>
+    <% end %>
+</div>
+
