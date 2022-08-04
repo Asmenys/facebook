@@ -1,19 +1,17 @@
 <%= turbo_frame_tag post do%>
-    <div class="grid bg-white rounded-md">
-        <div class="grid grid-rows-1 gap-5">
-            <div class = "grid row-start-1">
-                <%="#{post.creator.firstName} #{post.creator.lastName}"%>
-            </div>
-
-            <div class = "grid row-start-1">
-                 <li class="list-disc"><%="#{post.created_at.day.ordinalize} #{post.created_at.strftime("%B")} at #{post.created_at.strftime("%H:%M")}"%></li>
-            </div>
+    <div class="grid bg-white rounded-md p-4 max-w-md">
+        <div class = "grid row-start-1">
+            <%="#{post.creator.firstName} #{post.creator.lastName}"%>
         </div>
-        <div><%= post.body %> </div>
-         <%= button_to "Delete",
+        <div class="col-start-2 justify-self-end">
+             <li class="list-disc"><%="#{post.created_at.day.ordinalize} #{post.created_at.strftime("%B")} at #{post.created_at.strftime("%H:%M")}"%></li>
+        </div>
+        <div class = "col-start-1 col-end-3 break-all pt-2 pb-2"><p><%= post.body %></p> </div>
+        <div class="justify-self-end row-start-3 col-start-2">
+            <%= button_to "Delete",
                     post_path(post),
                     method: :delete,
-                    form: { data: { turbo_frame: "_top" } },
-                    class: "btn btn--light" %>
+                    form: { data: { turbo_frame: "_top" } }%>
+        </div>
     </div>
 <% end %>
