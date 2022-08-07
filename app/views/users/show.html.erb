@@ -23,6 +23,13 @@
             <%= render 'friend_requests'%>
         </div>
     </div>
+    <%= link_to "New post",
+                new_post_path,
+                class: "btn btn--primary",
+                data: { turbo_frame: "new_post" }%>
+    <turbo-frame id="new_post">
+    </turbo-frame>
+
     <turbo-frame id="posts">
         <div class="mt-5 grid gap-3"><%= render @user.posts%></div>
     </turbo-frame>
