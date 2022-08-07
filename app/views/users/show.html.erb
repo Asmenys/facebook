@@ -23,14 +23,21 @@
             <%= render 'friend_requests'%>
         </div>
     </div>
-    <%= link_to "New post",
-                new_post_path,
-                class: "btn btn--primary",
-                data: { turbo_frame: "new_post" }%>
-    <turbo-frame id="new_post">
-    </turbo-frame>
-
-    <turbo-frame id="posts">
-        <div class="mt-5 grid gap-3"><%= render @user.posts%></div>
-    </turbo-frame>
+    <%= turbo_frame_tag id="user_page_body" do %>
+        <div class = "mx-auto grid justify-items-center">
+                <%= link_to "New post",
+                            new_post_path,
+                            class: "btn btn--primary border-solid border-black border-b-2",
+                            data: { turbo_frame: "new_post" }%>
+        </div>
+        <div class="grid">
+            <%= turbo_frame_tag id="new_post" do %>
+            <% end %>
+            <%= turbo_frame_tag id="posts" do %>
+                <div class="mt-5 grid gap-3">
+                    <%= render @user.posts%>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
 </div>
