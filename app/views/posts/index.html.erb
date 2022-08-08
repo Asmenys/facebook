@@ -1,7 +1,9 @@
 <% if @posts.any?%>
-    <div class="bg-white mx-auto">
-        <%@posts.each do |post|%>
-            <%= render post %>
-        <%end%>
-    </div>
+    <%= turbo_frame_tag "posts" do %>
+        <div class="mx-auto grid">
+            <%@posts.each do |post|%>
+                <%= render post %>
+            <%end%>
+        </div>
+    <% end %>
 <%end%>
