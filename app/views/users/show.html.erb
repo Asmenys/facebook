@@ -30,7 +30,9 @@
                 <%= render 'friend_requests'%>
             </div>
             <div data-user-page-target="userPageBody">
-                <div data-user-page-target="userPageBodyContent"><%= render User.find(params[:id]).posts%></div>
+                <div data-user-page-target="userPageBodyContent">
+                    <%= render User.find(params[:id]).posts%>
+                </div>
             </div>
         </div>
     </div>
