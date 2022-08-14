@@ -1,5 +1,5 @@
 <div class = "mx-auto" >
-    <div class="mb-5 mx-auto bg-white shadow-[0_-35px_60px_-20px] border-b-2 border-gray-300">
+    <div data-controller="user-page" class="mb-5 mx-auto bg-white shadow-[0_-35px_60px_-20px] border-b-2 border-gray-300">
         <div class="p-3 grid border-solid border-b border-gray-600">
             <div class="justify-self-center flex gap-2 font-bold">
                 <h3><%=@user.firstName%></h3>
@@ -9,14 +9,15 @@
                 <div class="justify-self-center font-bold text-gray-500 hover:underline" >
                     <%= @user.friends.count %>
                     <%if @user.friends.count > 1%>
-                        friends
+                        <% string = "friends" %>
                     <% else %>
-                        friend
+                        <% string = "friend" %>
                     <% end %>
+                 <%= render 'link_to_friends', string: string%>
                 </div>
             <% end %>
         </div>
-        <div data-controller="user-page">
+        <div>
             <div class="p-4 font-bold text-gray-500 flex gap-8 justify-center">
                 <%= link_to "Posts",
                             user_posts_path(params[:id]),
@@ -25,12 +26,7 @@
                             class: "btn btn--primary",
                             data: { turbo_frame: "posts" } %>
                 <div>About</div>
-                <%= link_to "Friends",
-                            user_friendships_path(params[:id]),
-                            "data-action" => "user-page#replaceUserPageBody",
-                            "data-user-page-frame-name-param" => "friendships",
-                            class: "btn btn--primary",
-                            data: { turbo_frame: "friendships" } %>
+                <%= render 'link_to_friends', string: "Friends"%>
                 <%= render 'friend_requests'%>
             </div>
             <div data-user-page-target="userPageBody">

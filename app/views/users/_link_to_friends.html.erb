@@ -1,0 +1,6 @@
+ <%= link_to string,
+            user_friendships_path(params[:id]),
+            "data-action" => "user-page#replaceUserPageBody",
+            "data-user-page-frame-name-param" => "friendships",
+            class: "btn btn--primary",
+            data: { turbo_frame: "friendships" } %>
