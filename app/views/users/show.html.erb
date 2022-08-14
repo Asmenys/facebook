@@ -7,11 +7,10 @@
             </div>
             <% if @user.friends.any?%>
                 <div class="justify-self-center font-bold text-gray-500 hover:underline" >
-                    <%= @user.friends.count %>
                     <%if @user.friends.count > 1%>
-                        <% string = "friends" %>
+                        <% string = "#{@user.friends.count} friends" %>
                     <% else %>
-                        <% string = "friend" %>
+                        <% string = "1 friend" %>
                     <% end %>
                  <%= render 'link_to_friends', string: string%>
                 </div>
@@ -23,6 +22,7 @@
                             user_posts_path(params[:id]),
                             "data-action" => "user-page#replaceUserPageBody",
                             "data-user-page-frame-name-param" => "posts",
+                            "data-user-page-target" => "posts",
                             class: "btn btn--primary",
                             data: { turbo_frame: "posts" } %>
                 <div>About</div>
@@ -31,7 +31,7 @@
             </div>
             <div data-user-page-target="userPageBody">
                 <div data-user-page-target="userPageBodyContent">
-                    <%= render User.find(params[:id]).posts%>
+                    <%= render template: 'user_posts/index'%>
                 </div>
             </div>
         </div>
