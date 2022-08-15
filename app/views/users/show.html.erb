@@ -24,10 +24,18 @@
                 <div data-action = "click->user-page#replaceUserPageBody" data-user-page-frame-name-param = "friend_requests">Friend Requests</div>
             </div>
             <div data-user-page-target="userPageBody">
-                <div data-user-page-target="posts">text1</div>
-                <div data-user-page-target="about" hidden="">text2</div>
-                <div data-user-page-target="friends" hidden="">text3</div>
-                <div data-user-page-target="friend_requests" hidden="">text4</div>
+                <div data-user-page-target="posts">
+                    <%= render @user.posts%>
+                </div>
+                <div data-user-page-target="about" hidden="">
+                    text2
+                </div>
+                <div data-user-page-target="friends" hidden="">
+                    <%= render 'friends', friends: @user.friends %>
+                </div>
+                <div data-user-page-target="friend_requests" hidden="">
+                    text4
+                </div>
             </div>
         </div>
     </div>

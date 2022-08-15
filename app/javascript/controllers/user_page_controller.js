@@ -10,8 +10,7 @@ export default class extends Controller {
     }
     replaceUserPageBody(event){
         this.getTarget(this.currentDisplayPageValue).hidden= true
-        this.currentDisplayPageValue= event.params.frameName
-        console.log(this.currentDisplayPageValue)
+        this.currentDisplayPageValue = event.params.frameName
         this.getTarget(this.currentDisplayPageValue).hidden= false
     }
     getTarget(targetName){
