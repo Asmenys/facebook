@@ -2,13 +2,24 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
     
-    static targets = ["userPageBody", "userPageBodyContent"]
+    static targets = ["userPageBody", "posts", "about", "friends", "friend_requests"]
+    static values = { currentDisplayPage: String}
 
+    initialize(){
+        this.currentDisplayPageValue = "posts"
+    }
     replaceUserPageBody(event){
-        let new_frame = document.createElement("turbo-frame")
-        new_frame.id = event.params.frameName
-        new_frame.setAttribute("data-user-page-target", "userPageBodyContent")
-        this.userPageBodyTarget.replaceChild(new_frame, this.userPageBodyContentTarget)
+        this.getTarget(this.currentDisplayPageValue).hidden= true
+        this.currentDisplayPageValue= event.params.frameName
+        console.log(this.currentDisplayPageValue)
+        this.getTarget(this.currentDisplayPageValue).hidden= false
+    }
+    getTarget(targetName){
+        return targetName == "posts" ? this.postsTarget
+                : targetName == "about" ? this.aboutTarget
+                : targetName == "friends" ? this.friendsTarget
+                : targetName == "friend_requests" ? this.friend_requestsTarget
+                : null
     }
 
 }
