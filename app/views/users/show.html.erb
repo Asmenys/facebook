@@ -17,11 +17,11 @@
             <% end %>
         </div>
         <div>
-            <div class="p-4 font-bold text-gray-500 flex gap-8 justify-center">
-                <div data-action = "click->user-page#replaceUserPageBody" data-user-page-frame-name-param = "posts">Posts</div>
-                <div data-action = "click->user-page#replaceUserPageBody" data-user-page-frame-name-param = "about">About</div>
-                <div data-action = "click->user-page#replaceUserPageBody" data-user-page-frame-name-param = "friends">Friends</div>
-                <div data-action = "click->user-page#replaceUserPageBody" data-user-page-frame-name-param = "friend_requests">Friend Requests</div>
+            <div class="font-bold text-gray-500 flex justify-center">
+                <div id="posts" class="p-4 pb-2 select-none cursor-pointer" data-user-page-frame-name-param = "posts" data-action = "click->user-page#replaceUserPageBody" data-user-page->Posts</div>
+                <div id="about" class="p-4 pb-2 select-none cursor-pointer" data-user-page-frame-name-param = "about" data-action = "click->user-page#replaceUserPageBody" data-user-page->About</div>
+                <div id="friends" class="p-4 pb-2 select-none cursor-pointer" data-user-page-frame-name-param = "friends" data-action = "click->user-page#replaceUserPageBody" data-user-page->Friends</div>
+                <div id="friend_requests" class="p-4 pb-2 select-none cursor-pointer" data-user-page-frame-name-param = "friend_requests" data-action = "click->user-page#replaceUserPageBody" data-user-page->Friend Requests</div>
             </div>
             <div data-user-page-target="userPageBody">
                 <div data-user-page-target="posts">
