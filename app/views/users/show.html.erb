@@ -6,21 +6,21 @@
                 <h3><%=@user.lastName%></h3>
             </div>
             <% if @user.friends.any?%>
-                <div class="justify-self-center font-bold text-gray-500 hover:underline" >
+                <div class="justify-self-center font-bold text-gray-500 hover:underline select-none" >
                     <%if @user.friends.count > 1%>
                         <% string = "#{@user.friends.count} friends" %>
                     <% else %>
                         <% string = "1 friend" %>
                     <% end %>
-                 <%= string%>
+                 <div data-user-page-frame-name-param = "friends" data-action = "click->user-page#replaceUserPageBody" ><%= string %> </div>
                 </div>
             <% end %>
         </div>
         <div class="font-bold text-gray-500 flex justify-center">
-            <div id="posts" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200 border-b-2 border-solid border-blue-500 text-blue-500" data-user-page-frame-name-param = "posts" data-action = "click->user-page#replaceUserPageBody" data-user-page->Posts</div>
-            <div id="about" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "about" data-action = "click->user-page#replaceUserPageBody" data-user-page->About</div>
-            <div id="friends" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friends" data-action = "click->user-page#replaceUserPageBody" data-user-page->Friends</div>
-            <div id="friend_requests" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friend_requests" data-action = "click->user-page#replaceUserPageBody" data-user-page->Friend Requests</div>
+            <div id="posts" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200 border-b-2 border-solid border-blue-500 text-blue-500" data-user-page-frame-name-param = "posts" data-action = "click->user-page#replaceUserPageBody">Posts</div>
+            <div id="about" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "about" data-action = "click->user-page#replaceUserPageBody">About</div>
+            <div id="friends" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friends" data-action = "click->user-page#replaceUserPageBody">Friends</div>
+            <div id="friend_requests" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friend_requests" data-action = "click->user-page#replaceUserPageBody">Friend Requests</div>
         </div>
     </div>
     <div>
@@ -32,7 +32,16 @@
                 text2
             </div>
             <div data-user-page-target="friends" hidden="">
-                <div class = "grid">
+                <div class = "grid bg-white rounded-md">
+                <div>
+                    <div>
+                        <h1>Friends</h1>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+
                     <%= render @user.friends %>
                 </div>
             </div>
