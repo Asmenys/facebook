@@ -18,7 +18,7 @@
         </div>
         <div>
             <div class="font-bold text-gray-500 flex justify-center">
-                <div id="posts" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "posts" data-action = "click->user-page#replaceUserPageBody" data-user-page->Posts</div>
+                <div id="posts" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200 border-b-2 border-solid border-blue-500 text-blue-500" data-user-page-frame-name-param = "posts" data-action = "click->user-page#replaceUserPageBody" data-user-page->Posts</div>
                 <div id="about" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "about" data-action = "click->user-page#replaceUserPageBody" data-user-page->About</div>
                 <div id="friends" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friends" data-action = "click->user-page#replaceUserPageBody" data-user-page->Friends</div>
                 <div id="friend_requests" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friend_requests" data-action = "click->user-page#replaceUserPageBody" data-user-page->Friend Requests</div>
@@ -31,7 +31,7 @@
                     text2
                 </div>
                 <div data-user-page-target="friends" hidden="">
-                    <%= render 'friends', friends: @user.friends %>
+                    <%= render @user.friends %>
                 </div>
                 <div data-user-page-target="friend_requests" hidden="">
                     text4
