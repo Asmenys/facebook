@@ -31,12 +31,12 @@ export default class extends Controller {
     }
 
     resetStyle(targetId){
-        document.getElementById(targetId).className = "p-4 pb-2 select-none cursor-pointer"
+        document.getElementById(targetId).className = "m-2 p-2 select-none cursor-pointer hover:bg-gray-200"
     }
 
     setSelectedStyle(targetId){
         let target = document.getElementById(targetId)
-        target.className = "p-4 pb-2 select-none cursor-pointer border-b-2 border-solid border-blue-500 text-blue-500"
+        target.className = "m-2 p-2 select-none cursor-pointer hover:bg-gray-200 border-b-2 border-solid border-blue-500 text-blue-500"
     }
 
 }
