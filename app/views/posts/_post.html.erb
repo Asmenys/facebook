@@ -7,11 +7,13 @@
              <li class="list-disc"><%="#{post.created_at.day.ordinalize} #{post.created_at.strftime("%B")} at #{post.created_at.strftime("%H:%M")}"%></li>
         </div>
         <div class = "col-start-1 col-end-3 break-all pt-2 pb-2"><p><%= post.body %></p> </div>
-        <div class="justify-self-end row-start-3 col-start-2">
-            <%= button_to "Delete",
-                    post_path(post),
-                    method: :delete,
-                    form: { data: { turbo_frame: "_top" } }%>
-        </div>
+        <% if post.creator == current_user %>
+            <div class="justify-self-end row-start-3 col-start-2">
+                <%= button_to "Delete",
+                        post_path(post),
+                        method: :delete,
+                        form: { data: { turbo_frame: "_top" } }%>
+            </div>
+        <% end %>
     </div>
 <% end %>
