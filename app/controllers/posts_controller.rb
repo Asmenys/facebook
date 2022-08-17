@@ -23,11 +23,12 @@ class PostsController < ApplicationController
 
     def destroy
         @post = Post.find(params[:id])
-        @post.destroy
-        
-        respond_to do |format|
-            format.turbo_stream { render turbo_stream: turbo_stream.remove(@post) }
-            format.html { redirect_to posts_url }
+        if @post.creator == current_user
+            @post.destroy
+            respond_to do |format|
+                format.turbo_stream { render turbo_stream: turbo_stream.remove(@post) }
+                format.html { redirect_to posts_url }
+            end
         end
     end
 
