@@ -23,11 +23,13 @@ export default class extends Controller {
     }
 
     getTarget(targetName){
-        return targetName == "posts" ? this.postsTarget
-                : targetName == "about" ? this.aboutTarget
-                : targetName == "friends" ? this.friendsTarget
-                : targetName == "friend_requests" ? this.friend_requestsTarget
-                : null
+        const targetMap = new Map([
+            ["posts", this.postsTarget],
+            ["about", this.aboutTarget],
+            ["friends", this.friendsTarget],
+            ["friend_requests", this.friend_requestsTarget],
+        ]);
+        return targetMap.get(targetName);
     }
 
     resetStyle(targetId){
