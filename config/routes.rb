@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'errors/unauthorized_action'
   devise_for :users
   resources :posts
   resources :users do
@@ -11,4 +12,6 @@ Rails.application.routes.draw do
   devise_scope :user do
     root "devise/sessions#new"
   end
+
+  match "/403", to: "errors#unauthorized_action", via: :all
 end

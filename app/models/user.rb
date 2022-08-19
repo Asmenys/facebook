@@ -15,11 +15,11 @@ class User < ApplicationRecord
   
   has_many :liked_posts, class_name: "PostLike", inverse_of: "liker", foreign_key: "liker_id"
 
+  def friendships
+    Friendship.friendships_for_user(self.id)
+  end
+
   def friends
-    friend_user_array = []
-    friendship_list = Friendship.friendships_for_user(self.id)
-    friend_user_array += friendship_list.select(:friendship_master_id).where.not(friendship_master: self).map(&:friendship_master)
-    friend_user_array += friendship_list.select(:friendship_receiver_id).where.not(friendship_receiver: self).map(&:friendship_receiver)
-    friend_user_array
+    self.friendships.map {|friendship| friendship.friend(self.id)}
   end
 end

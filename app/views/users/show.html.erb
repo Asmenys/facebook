@@ -5,22 +5,22 @@
                 <h3><%=@user.firstName%></h3>
                 <h3><%=@user.lastName%></h3>
             </div>
-            <% if @user.friends.any?%>
+            <% if @friends.any?%>
                 <div class="justify-self-center font-bold text-gray-500 hover:underline select-none" >
-                    <%if @user.friends.count > 1%>
-                        <% string = "#{@user.friends.count} friends" %>
+                    <%if @friends.count > 1%>
+                        <% string = "#{@friends.count} friends" %>
                     <% else %>
                         <% string = "1 friend" %>
                     <% end %>
-                 <div data-user-page-frame-name-param = "friends" data-action = "click->user-page#replaceUserPageBody" ><%= string %> </div>
+                    <%= render 'link_to_friends', string: string%>
                 </div>
             <% end %>
         </div>
         <div class="font-bold text-gray-500 flex justify-center">
-            <div id="posts" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200 border-b-2 border-solid border-blue-500 text-blue-500" data-user-page-frame-name-param = "posts" data-action = "click->user-page#replaceUserPageBody">Posts</div>
-            <div id="about" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "about" data-action = "click->user-page#replaceUserPageBody">About</div>
-            <div id="friends" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friends" data-action = "click->user-page#replaceUserPageBody">Friends</div>
-            <div id="friend_requests" class="m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friend_requests" data-action = "click->user-page#replaceUserPageBody">Friend Requests</div>
+            <div id="posts" class="grid justify-stretch m-2 p-2 select-none cursor-pointer hover:bg-gray-200 border-b-2 border-solid border-blue-500 text-blue-500" data-user-page-frame-name-param = "posts" data-action = "click->user-page#replaceUserPageBody">Posts</div>
+            <div id="about" class="grid justify-stretch m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "about" data-action = "click->user-page#replaceUserPageBody">About</div>
+            <div id="friends" class="grid justify-stretch m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friends" data-action = "click->user-page#replaceUserPageBody"><%= render 'link_to_friends', string: "Friends"%></div>
+            <div id="friend_requests" class="grid justify-stretch m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friend_requests" data-action = "click->user-page#replaceUserPageBody">Friend Requests</div>
         </div>
     </div>
     <div>
@@ -33,16 +33,15 @@
             </div>
             <div data-user-page-target="friends" hidden="">
                 <div class = "grid bg-white rounded-md">
-                <div>
-                    <div>
-                        <h1>Friends</h1>
+                    <div class="p-4">
+                        <div class="font-bold">
+                            <h1>Friends</h1>
+                        </div>
+                        <div>
+                            <%= turbo_frame_tag "friendships" do%>
+                            <% end %>
+                        </div>
                     </div>
-                    <div>
-
-                    </div>
-                </div>
-
-                    <%= render @user.friends %>
                 </div>
             </div>
             <div data-user-page-target="friend_requests" hidden="">
