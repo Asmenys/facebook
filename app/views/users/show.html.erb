@@ -1,7 +1,7 @@
 <div data-controller="user-page" class = "mx-auto" >
     <div class="mb-5 mx-auto bg-white shadow-[0_-35px_60px_-20px] border-b-2 border-gray-300">
         <div class="p-3 grid border-solid border-b border-gray-600">
-            <div class="justify-self-center flex gap-2 font-bold">
+            <div class="justify-self-center flex g font-bold">
                 <h3><%=@user.firstName%></h3>
                 <h3><%=@user.lastName%></h3>
             </div>
@@ -12,21 +12,33 @@
                     <% else %>
                         <% string = "1 friend" %>
                     <% end %>
-                    <%= render 'link_to_friends', string: string%>
+                    <%= render :partial => 'link_to_model', :locals => {string: string, path: user_friendships_path(@user)}%>
                 </div>
             <% end %>
         </div>
         <div class="font-bold text-gray-500 flex justify-center">
-            <div id="posts" class="grid justify-stretch m-2 p-2 select-none cursor-pointer hover:bg-gray-200 border-b-2 border-solid border-blue-500 text-blue-500" data-user-page-frame-name-param = "posts" data-action = "click->user-page#replaceUserPageBody">Posts</div>
-            <div id="about" class="grid justify-stretch m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "about" data-action = "click->user-page#replaceUserPageBody">About</div>
-            <div id="friends" class="grid justify-stretch m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friends" data-action = "click->user-page#replaceUserPageBody"><%= render 'link_to_friends', string: "Friends"%></div>
-            <div id="friend_requests" class="grid justify-stretch m-2 p-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friend_requests" data-action = "click->user-page#replaceUserPageBody">Friend Requests</div>
+            <div id="postsSelector" class="grid justify-stretch m-2 select-none cursor-pointer hover:bg-gray-200 border-b-2 border-solid border-blue-500 text-blue-500" data-user-page-frame-name-param = "postsSelector" data-action = "click->user-page#replaceUserPageBody">
+                <%= render :partial => 'link_to_model', :locals => {string: "Posts", path: user_posts_path(@user)}%>
+            </div>
+            <div id="aboutSelector" class="grid justify-stretch m-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "aboutSelector" data-action = "click->user-page#replaceUserPageBody">
+                <div class = "p-2">About</div>
+            </div>
+            <div id="friendsSelector" class="grid justify-stretch m-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friendsSelector" data-action = "click->user-page#replaceUserPageBody">
+                <%= render :partial => 'link_to_model', :locals => {string: "Friends", path: user_friendships_path(@user)}%>
+            </div>
+            <div id="friend_requestsSelector" class="grid justify-stretch m-2 select-none cursor-pointer hover:bg-gray-200" data-user-page-frame-name-param = "friend_requestsSelector" data-action = "click->user-page#replaceUserPageBody">
+                <div class="p-2">Friend Requests</div>
+            </div>
         </div>
     </div>
     <div>
         <div data-user-page-target="userPageBody">
             <div data-user-page-target="posts">
-                <%= render @user.posts%>
+                <%= turbo_stream.append "posts" do %>
+                    <%= render @user.posts%>
+                <% end %>
+                <%= turbo_frame_tag "posts" do %>
+                <% end %>
             </div>
             <div data-user-page-target="about" hidden="">
                 text2
@@ -38,7 +50,7 @@
                             <h1>Friends</h1>
                         </div>
                         <div>
-                            <%= turbo_frame_tag "friendships" do%>
+                            <%= turbo_frame_tag "friends" do%>
                             <% end %>
                         </div>
                     </div>
