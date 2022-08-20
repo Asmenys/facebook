@@ -12,7 +12,11 @@
                     <% else %>
                         <% string = "1 friend" %>
                     <% end %>
-                    <%= render :partial => 'link_to_model', :locals => {string: string, path: user_friendships_path(@user)}%>
+                    <%= link_to string,
+                                    user_friendships_path(@user),
+                                    "data-user-page-frame-name-param" => "friendsSelector",
+                                    "data-action" => "click->user-page#replaceUserPageBody",
+                                    data: { turbo_frame: "friends" }%>
                 </div>
             <% end %>
         </div>
