@@ -11,7 +11,10 @@ class PostsController < ApplicationController
     def create 
         @post = current_user.posts.new(post_params)
         if @post.save
-            redirect_to post_path(@post)
+            respond_to do |format|
+                format.html { redirect_to posts_path }
+                format.turbo_stream
+            end
         else
             render 'new', status: :unprocessable_entity
         end
@@ -23,12 +26,11 @@ class PostsController < ApplicationController
 
     def destroy
         @post = Post.find(params[:id])
-        if @post.creator == current_user
-            @post.destroy
-            respond_to do |format|
-                format.turbo_stream { render turbo_stream: turbo_stream.remove(@post) }
-                format.html { redirect_to posts_url }
-            end
+        @post.destroy
+        
+        respond_to do |format|
+            format.turbo_stream { render turbo_stream: turbo_stream.remove(@post) }
+            format.html { redirect_to posts_url }
         end
     end
 
