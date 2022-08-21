@@ -38,8 +38,16 @@
     <div>
         <div data-user-page-target="userPageBody">
             <div data-user-page-target="posts">
-                <%= turbo_stream.append "posts" do %>
-                    <%= render @user.posts%>
+                 <div class="mb-4 bg-white">
+                    <%= link_to "new post",
+                                new_post_path,
+                                class: "btn btn--primary",
+                                data: {turbo_frame: "new_post"}%>
+                    <%= turbo_frame_tag "new_post" do %>
+                    <% end %>
+                </div>
+                <%= turbo_stream.prepend "posts" do %>
+                    <%= render @user.posts.order(created_at: :desc)%>
                 <% end %>
                 <%= turbo_frame_tag "posts" do %>
                 <% end %>
