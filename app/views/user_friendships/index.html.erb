@@ -1,5 +1,5 @@
 <% if @friendships.any?%>
-    <%= turbo_frame_tag "friendships" do%>
+    <%= turbo_frame_tag "friends" do%>
         <% @friendships.each do |friendship|%>
             <%= render 'friendship', friendship: friendship %>
         <% end %>
