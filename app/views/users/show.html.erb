@@ -38,14 +38,16 @@
     <div>
         <div data-user-page-target="userPageBody">
             <div data-user-page-target="posts">
-                 <div class="grid mb-4 bg-white">
-                    <%= link_to "Whats on your mind?",
-                                new_user_post_path(@user),
-                                class: "btn btn--primary justify-self-center",
-                                data: {turbo_frame: "new_post"}%>
-                    <%= turbo_frame_tag "new_post" do %>
-                    <% end %>
-                </div>
+                <% if current_user == @user%>
+                     <div class="grid mb-4 bg-white">
+                        <%= link_to "Whats on your mind?",
+                                    new_user_post_path(@user),
+                                    class: "btn btn--primary justify-self-center",
+                                    data: {turbo_frame: "new_post"}%>
+                        <%= turbo_frame_tag "new_post" do %>
+                        <% end %>
+                    </div>
+                <% end %>
                 <%= turbo_stream.prepend "posts" do %>
                     <%= render @user.posts.order(created_at: :desc)%>
                 <% end %>
