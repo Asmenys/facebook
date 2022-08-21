@@ -1,7 +1,11 @@
-<div class="mx-auto bg-white shadow-xl p-2 grid">
-    <%= form_with model: @post do |form|%>
-    <%= form.label :body, "Body:", :class => ""%>
-    <%= form.text_field :body, :class => ""%>
-    <%= form.submit "Create post"%>
+<div class="bg-white shadow-xl p-2 grid">
+    <div class="p-2 grid border-b border-gray-300 border-solid justify-self-stretch">
+        <h1 class="font-bold justify-self-center text-sm">Create post</h1>
+    </div>
+    <%= form_with model: @post, :html => {:class => "flex grow"} do |form|%>
+        <div class="flex grow flex-col">
+            <%= form.text_area :body, :class => "mb-2 text- mt-2 border-none focus:border-none break-all", :placeholder => "Whats on your mind, #{@user.firstName}?"%>
+            <%= form.submit "Post", :class => " h-8 font-bold text-white rounded-sm bg-sky-600 text-sm"%>
+        </div>
     <% end %>
 </div>

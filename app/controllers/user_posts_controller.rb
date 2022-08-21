@@ -5,5 +5,10 @@ class UserPostsController < PostsController
 
     def show
         @post = Post.find(params[:id]) 
-     end
+    end
+
+    def new
+        @user = User.find(params[:user_id])
+        @post = @user.posts.new
+    end
 end

@@ -38,10 +38,10 @@
     <div>
         <div data-user-page-target="userPageBody">
             <div data-user-page-target="posts">
-                 <div class="mb-4 bg-white">
-                    <%= link_to "new post",
-                                new_post_path,
-                                class: "btn btn--primary",
+                 <div class="grid mb-4 bg-white">
+                    <%= link_to "Whats on your mind?",
+                                new_user_post_path(@user),
+                                class: "btn btn--primary justify-self-center",
                                 data: {turbo_frame: "new_post"}%>
                     <%= turbo_frame_tag "new_post" do %>
                     <% end %>
