@@ -1,0 +1,12 @@
+ 
+<div data-controller = "post-menu">   
+
+    <div data-action="click->post-menu#toggle">dropdown</div> 
+
+   <div hidden="" data-post-menu-target="dropdown">
+    <%= button_to "Delete",
+                post_path(post),
+                method: :delete,
+                form: { data: { turbo_frame: "_top" } }%>
+   </div>                                                                                                                                                                   
+ </div>

@@ -13,10 +13,7 @@
          </div>
         <% if post.creator == current_user %>
             <div class="justify-self-end row-start-3 col-start-2">
-                <%= button_to "Delete",
-                        post_path(post),
-                        method: :delete,
-                        form: { data: { turbo_frame: "_top" } }%>
+                <%= render 'posts/post_owner_options', post: post%>
             </div>
         <% end %>
     </div>
