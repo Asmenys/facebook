@@ -8,7 +8,21 @@ class PostsController < ApplicationController
         @post = Post.new
     end
 
-    def create 
+    def edit
+        @post = Post.find(params[:id])
+    end
+
+    def update
+        @post = Post.find(params[:id])
+        if @post.update_attribute(:body, post_params[:body])
+            respond_to do |format|
+            format.turbo_stream { render turbo_stream: turbo_stream.update(@post) }
+            format.html { redirect_to posts_url }
+            end
+        end
+    end
+
+    def create
         @post = current_user.posts.new(post_params)
         if @post.save
             respond_to do |format|
@@ -21,13 +35,13 @@ class PostsController < ApplicationController
     end
 
     def show
-       @post = Post.find(params[:id]) 
+       @post = Post.find(params[:id])
     end
 
     def destroy
         @post = Post.find(params[:id])
         @post.destroy
-        
+
         respond_to do |format|
             format.turbo_stream { render turbo_stream: turbo_stream.remove(@post) }
             format.html { redirect_to posts_url }

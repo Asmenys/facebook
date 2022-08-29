@@ -4,7 +4,7 @@
     </div>
     <%= form_with model: @post, :html => {:class => "flex grow"} do |form|%>
         <div class="flex grow flex-col">
-            <%= form.text_area :body, :class => "mb-2 text- mt-2 border-none focus:border-none break-all", :placeholder => "Whats on your mind, #{@user.firstName}?"%>
+            <%= form.text_area :body, :class => "mb-2 text- mt-2 border-none focus:border-none break-all", :placeholder => "Whats on your mind, #{@post.creator.firstName}?"%>
             <%= form.submit "Post", :class => " h-8 font-bold text-white rounded-sm bg-sky-600 text-sm"%>
         </div>
     <% end %>

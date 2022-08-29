@@ -7,6 +7,9 @@
     <%= button_to "Delete",
                 post_path(post),
                 method: :delete,
-                form: { data: { turbo_frame: "_top" } }%>
+                form: { data: { turbo_frame: "_top" } } %>
+    <%= link_to "Edit",
+                  edit_post_path(post),
+                  form: { data: { turbo_frame: "_top" } } %>
    </div>                                                                                                                                                                   
  </div>
