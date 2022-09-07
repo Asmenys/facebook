@@ -1,1 +1,6 @@
-<%= friendship.friend(params[:user_id].to_i).firstName %>
+<div>
+    <% friend = friendship.friend(params[:user_id].to_i) %>
+    <%= friend.firstName %>
+    <%= friend.lastName %>
+</div>
+
