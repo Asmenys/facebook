@@ -2,8 +2,7 @@
     <div class="mb-5 mx-auto bg-white shadow-[0_-35px_60px_-20px] border-b-2 border-gray-300">
         <div class="p-3 grid border-solid border-b border-gray-600">
             <div class="justify-self-center flex g font-bold">
-                <h3><%=@user.firstName%></h3>
-                <h3><%=@user.lastName%></h3>
+                <h3> <%=@user.firstName%> <%=@user.lastName%> </h3>
             </div>
             <% if @friends.any?%>
                 <div class="justify-self-center font-bold text-gray-500 hover:underline select-none" >
