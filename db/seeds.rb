@@ -8,3 +8,10 @@
 User.create(password:"1234567", email: "user_one@gmail.com", lastName:"Anders", firstName:"Thom")
 User.create(password:"1234567", email: "user_two@gmail.com", lastName: "Siom", firstName: "Dora")
 Post.create(creator: User.first, body: "sample post lorem ipsum many words")
+
+50.times do
+  user = User.create(password: Faker::Internet.password(min_length: 7), email: Faker::Internet.email, firstName: Faker::Name.first_name, lastName: Faker::Name.last_name)
+  10.times do
+    user.posts.new(body: Faker::Quote.yoda).save
+  end
+end

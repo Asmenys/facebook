@@ -12,13 +12,16 @@ class User < ApplicationRecord
   has_many :received_friend_requests, class_name: "FriendRequest", inverse_of: "request_receiver", foreign_key: "request_receiver_id"
 
   has_many :comments, foreign_key: "creator_id"
-  
+
   has_many :liked_posts, class_name: "PostLike", inverse_of: "liker", foreign_key: "liker_id"
 
   def friendships
     Friendship.friendships_for_user(self.id)
   end
 
+  def mutual_friends(friend_id)
+
+  end
   def friends
     self.friendships.map {|friendship| friendship.friend(self.id)}
   end
