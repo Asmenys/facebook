@@ -6,7 +6,7 @@
         <div class="col-start-2 justify-self-end">
              <li class="list-disc"><%="#{post.created_at.day.ordinalize} #{post.created_at.strftime("%B")} at #{post.created_at.strftime("%H:%M")}"%></li>
         </div>
-        <div class = "col-start-1 col-end-3 break-all pt-2 pb-2">
+        <div class = "col-start-1 col-end-3 break-words pt-2 pb-2">
             <p>
                 <%= post.body %>
             </p>
