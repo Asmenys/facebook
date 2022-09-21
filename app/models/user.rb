@@ -19,9 +19,15 @@ class User < ApplicationRecord
     Friendship.friendships_for_user(self.id)
   end
 
-  def mutual_friends(friend_id)
-
+  def friendable?(current_user)
+    result = true
+    if current_user == self
+      result = false
+    else
+      !self.sent_friend_requests.map(&:request_receiver_id).include?(current_user.id) && !self.received_friend_requests.map(&:request_sender_id).include?(current_user.id)
+    end
   end
+
   def friends
     self.friendships.map {|friendship| friendship.friend(self.id)}
   end
