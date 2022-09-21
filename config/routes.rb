@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'errors/unauthorized_action'
   devise_for :users
   resources :posts
+  resources :friend_requests
   resources :users do
     resources :posts, controller: "user_posts"
     resources :friendships, controller: "user_friendships"

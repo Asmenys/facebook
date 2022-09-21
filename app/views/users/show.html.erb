@@ -20,9 +20,15 @@
             <% end %>
         </div>
         <div class = "flex justify-center">
-            <%= link_to "Send friend request"%>
+            <%= form_with url: friend_requests_path, method: :post do |form| %>
+                <%= form.fields_for :friend_request do |fr| %>
+                    <%= fr.hidden_field :request_sender_id, value: current_user.id %>
+                    <%= fr.hidden_field :request_receiver_id, value: @user.id %>
+                    <%= fr.submit "Send friend request" %>
+                <% end %>
+            <% end %>
         </div>
-        <div class="font-bold text-gray-500 flex justify-center">
+        <div class="font-bold text-gray-500 flex justify -center">
             <div id="postsSelector" class="grid justify-stretch m-2 select-none cursor-pointer hover:bg-gray-200 border-b-2 border-solid border-blue-500 text-blue-500" data-user-page-frame-name-param = "postsSelector" data-action = "click->user-page#replaceUserPageBody">
                 <%= render :partial => 'link_to_model', :locals => {string: "Posts", path: user_posts_path(@user)}%>
             </div>
