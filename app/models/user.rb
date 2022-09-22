@@ -16,15 +16,14 @@ class User < ApplicationRecord
   has_many :liked_posts, class_name: "PostLike", inverse_of: "liker", foreign_key: "liker_id"
 
   def friendships
-    Friendship.friendships_for_user(self.id)
+    self.received_friendships+self.sent_friendships
   end
 
   def friendable?(current_user)
-    result = true
-    if current_user == self
-      result = false
-    else
+    unless current_user == self
+      unless self.friends.include?(current_user)
       !self.sent_friend_requests.map(&:request_receiver_id).include?(current_user.id) && !self.received_friend_requests.map(&:request_sender_id).include?(current_user.id)
+      end
     end
   end
 

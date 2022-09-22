@@ -14,14 +14,13 @@ Post.create(creator: User.first, body: "sample post lorem ipsum many words")
   10.times do
     user.posts.new(body: Faker::Quote.yoda).save
   end
+end
 
-  3.times do
-    user_id_array = Array.new(4) {(Random.random_number*50).round}.uniq
-    user_id_array.each do |user_id|
-      unless user.friends.map(&:id).include?(user_id)
-        f = Friendship.new(friendship_master_id: user_id, friendship_receiver: user)
-        f.save
-      end
+User.all.each do |user|
+  user_id_array = Array.new(1) {(Random.random_number*50).round}.uniq
+  user_id_array.each do |user_id|
+    unless user.friends.map(&:id).include?(user_id)
+      Friendship.new(friendship_master_id: user_id, friendship_receiver: user).save
     end
   end
 end
