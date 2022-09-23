@@ -31,3 +31,4 @@ class User < ApplicationRecord
     self.friendships.map {|friendship| friendship.friend(self.id)}
   end
 end
+
