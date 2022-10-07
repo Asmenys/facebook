@@ -61,7 +61,8 @@
                 <%= turbo_stream.prepend "posts" do %>
                     <%= render @user.posts.order(created_at: :desc)%>
                 <% end %>
-                <%= turbo_frame_tag "posts" do %>
+                <%= turbo_frame_tag "posts", loading: :lazy do %>
+                    <%= render 'skeleton_frame' %>
                 <% end %>
             </div>
             <div data-user-page-target="about" hidden="">
@@ -74,7 +75,8 @@
                             <h1>Friends</h1>
                         </div>
                         <div>
-                            <%= turbo_frame_tag "friends" do%>
+                            <%= turbo_frame_tag "friends", loading: :lazy do%>
+                                <%= render 'skeleton_frame' %>
                             <% end %>
                         </div>
                     </div>
