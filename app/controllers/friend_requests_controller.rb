@@ -5,12 +5,15 @@ class FriendRequestsController < ApplicationController
 
     def create
         @friend_request = FriendRequest.new(friend_request_params)
-
-        if @friend_request.save
-
-        end
     end
 
+    def show
+        @friend_request = FriendRequest.find(params[:id])
+    end
+
+    def index
+        @friend_requests = FriendRequest.all
+    end
 
     private
 
